@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const TopLocations = () => {
+const TopLocations = ({ onSeeAll }) => {
   const locations = [
     {
       id: 1,
@@ -34,10 +34,10 @@ const TopLocations = () => {
           <Text style={styles.sectionSubtitle}>POPULAR NEAR YOU</Text>
           <Text style={styles.sectionTitle}>Top Locations</Text>
         </View>
-        <View style={styles.seeAllContainer}>
+        <TouchableOpacity style={styles.seeAllContainer} onPress={onSeeAll}>
           <Text style={styles.seeAllText}>See All</Text>
           <Ionicons name="chevron-forward" size={16} color="#666" />
-        </View>
+        </TouchableOpacity>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.horizontalContainer}>

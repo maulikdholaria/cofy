@@ -6,6 +6,7 @@ import TopLocations from './top_locations';
 import InviteFriends from './invite_friends';
 import UpcomingEvents from './upcoming_events';
 import FeaturedGear from './featured_gear';
+import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
   const scrollViewRef = useRef(null);
@@ -15,6 +16,7 @@ const Home = () => {
     events: useRef(null),
     shop: useRef(null),
   };
+  const navigation = useNavigation();
 
   const scrollToSection = (key) => {
     if (sectionRefs[key]?.current && scrollViewRef.current) {
@@ -40,7 +42,7 @@ const Home = () => {
         </View>
         <View style={styles.sectionSpacer} />
         <View ref={sectionRefs.locations}>
-          <TopLocations />
+          <TopLocations onSeeAll={() => navigation.navigate('MapScreen')} />
         </View>
         <View style={styles.sectionSpacer} />
         <InviteFriends />
