@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const TrendingCoffee = () => {
+const TrendingCoffee = ({ onSeeAll }) => {
   const coffees = [
     {
       id: 1,
@@ -37,10 +37,10 @@ const TrendingCoffee = () => {
           <Text style={styles.sectionSubtitle}>DISCOVER YOUR NEXT FAVORITE</Text>
           <Text style={styles.sectionTitle}>Trending Coffee</Text>
         </View>
-        <View style={styles.seeAllContainer}>
+        <TouchableOpacity style={styles.seeAllContainer} onPress={onSeeAll}>
           <Text style={styles.seeAllText}>See All</Text>
           <Ionicons name="chevron-forward" size={16} color="#666" />
-        </View>
+        </TouchableOpacity>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.horizontalContainer}>

@@ -10,6 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screen/home/home';
 import MapScreen from './screen/map/map_screen';
 import CoffeeShopDetail from './screen/map/coffee_shop_detail';
+import TrendingCoffeeList from './screen/coffee/trending_coffee_list';
 
 // Disable Hermes to fix codegenNativeCommands error
 LogBox.ignoreLogs([
@@ -27,6 +28,7 @@ const App = () => {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="MapScreen" component={MapScreen} />
           <Stack.Screen name="CoffeeShopDetail" component={CoffeeShopDetail} />
+          <Stack.Screen name="TrendingCoffeeList" component={TrendingCoffeeList} />
         </Stack.Navigator>
       </SafeAreaView>
     </NavigationContainer>

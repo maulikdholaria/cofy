@@ -38,7 +38,7 @@ const Home = () => {
       >
         <View style={styles.topSpacer} />
         <View ref={sectionRefs.coffee}>
-          <TrendingCoffee />
+          <TrendingCoffee onSeeAll={() => navigation.navigate('TrendingCoffeeList')} />
         </View>
         <View style={styles.sectionSpacer} />
         <View ref={sectionRefs.locations}>

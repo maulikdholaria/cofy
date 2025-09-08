@@ -1,45 +1,77 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const FeaturedGear = () => {
-  const gear = [
-    { id: 1, name: 'Coffee Grinder Pro', price: '$299.99', icon: 'settings-outline' },
-    { id: 2, name: 'V60 Pour Over Kit', price: '$89.99', icon: 'funnel-outline' },
-    { id: 3, name: 'Ceramic Coffee Mug', price: '$45', icon: 'cafe-outline' },
-    { id: 4, name: 'Coffee Lover T-Shirt', price: '$29.99', icon: 'shirt-outline' },
-  ];
+const gear = [
+  {
+    id: 1,
+    name: 'Coffee Grinder Pro',
+    price: '$299.99',
+    icon: 'settings-outline',
+    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    id: 2,
+    name: 'V60 Pour Over Kit',
+    price: '$89.99',
+    icon: 'funnel-outline',
+    image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    id: 3,
+    name: 'Ceramic Coffee Mug',
+    price: '$45',
+    icon: 'cafe-outline',
+    image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    id: 4,
+    name: 'Coffee Lover T-Shirt',
+    price: '$29.99',
+    icon: 'shirt-outline',
+    image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80',
+  },
+];
 
-  return (
-    <View>
-      <View style={styles.sectionHeader}>
-        <View>
-          <Text style={styles.sectionSubtitle}>CURATED COLLECTION</Text>
-          <Text style={styles.sectionTitle}>Featured Gear</Text>
-        </View>
-        <View style={styles.seeAllContainer}>
-          <Text style={styles.seeAllText}>See All</Text>
-          <Ionicons name="chevron-forward" size={16} color="#666" />
-        </View>
+const FeaturedGear = () => (
+  <View>
+    <View style={styles.sectionHeader}>
+      <View>
+        <Text style={styles.sectionSubtitle}>CURATED COLLECTION</Text>
+        <Text style={styles.sectionTitle}>Featured Gear</Text>
       </View>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <View style={styles.horizontalContainer}>
-          {gear.map((item) => (
-            <View key={item.id} style={styles.gearCard}>
-              <View style={styles.gearImage}>
-                <Ionicons name={item.icon} size={30} color="#8B4513" />
-              </View>
-              <View style={styles.gearInfo}>
-                <Text style={styles.gearName}>{item.name}</Text>
-                <Text style={styles.gearPrice}>{item.price}</Text>
-              </View>
-            </View>
-          ))}
-        </View>
-      </ScrollView>
+      <View style={styles.seeAllContainer}>
+        <Text style={styles.seeAllText}>See All</Text>
+        <Ionicons name="chevron-forward" size={16} color="#666" />
+      </View>
     </View>
-  );
-};
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <View style={styles.horizontalContainer}>
+        {gear.map((item) => (
+          <View key={item.id} style={styles.gearCard}>
+            <View style={styles.gearImage}>
+              <Image
+                source={{ uri: item.image }}
+                style={styles.gearImageImg}
+                resizeMode="cover"
+              />
+              {/* <Ionicons
+                name={item.icon}
+                size={30}
+                color="#8B4513"
+                style={styles.gearIconOverlay}
+              /> */}
+            </View>
+            <View style={styles.gearInfo}>
+              <Text style={styles.gearName}>{item.name}</Text>
+              <Text style={styles.gearPrice}>{item.price}</Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
+  </View>
+);
 
 const styles = StyleSheet.create({
   sectionHeader: {
@@ -83,6 +115,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 8,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  gearImageImg: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+    borderRadius: 12,
+  },
+  gearIconOverlay: {
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: 12,
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    borderRadius: 20,
+    padding: 4,
   },
   gearInfo: {
     paddingHorizontal: 4,
