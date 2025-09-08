@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const TrendingCoffee = () => {
@@ -10,6 +10,7 @@ const TrendingCoffee = () => {
       shop: 'Blue Bottle Coffee',
       price: '$18.99',
       rating: 4.8,
+      image: 'https://images.unsplash.com/photo-1660001187826-d652159b338b?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ const TrendingCoffee = () => {
       shop: 'Kona Coffee',
       price: '$45',
       rating: 4.7,
+      image: 'https://images.unsplash.com/photo-1584486171223-5e72652c1d42?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       id: 3,
@@ -24,6 +26,7 @@ const TrendingCoffee = () => {
       shop: 'Local Roaster',
       price: '$24.99',
       rating: 4.6,
+      image: 'https://images.unsplash.com/photo-1563803941834-004ceb7478a2?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
   ];
 
@@ -44,7 +47,17 @@ const TrendingCoffee = () => {
           {coffees.map((coffee) => (
             <View key={coffee.id} style={styles.coffeeCard}>
               <View style={styles.coffeeImage}>
-                <Ionicons name="bag-outline" size={40} color="#8B4513" />
+                <Image
+                  source={{ uri: coffee.image }}
+                  style={styles.coffeeImageImg}
+                  resizeMode="cover"
+                />
+                {/* <Ionicons
+                  name="bag-outline"
+                  size={40}
+                  color="#8B4513"
+                  style={styles.coffeeIconOverlay}
+                /> */}
               </View>
               <View style={styles.coffeeInfo}>
                 <Text style={styles.coffeeName}>{coffee.name}</Text>
@@ -107,6 +120,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 8,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  coffeeImageImg: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+    borderRadius: 12,
+  },
+  coffeeIconOverlay: {
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: 16,
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    borderRadius: 20,
+    padding: 4,
   },
   coffeeInfo: {
     paddingHorizontal: 4,

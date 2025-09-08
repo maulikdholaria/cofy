@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const TopLocations = ({ onSeeAll }) => {
@@ -10,6 +10,7 @@ const TopLocations = ({ onSeeAll }) => {
       city: 'Oakland',
       description: 'Pour-over perfection and single-origin beans',
       rating: 4.7,
+      image: 'https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ const TopLocations = ({ onSeeAll }) => {
       city: 'Los Angeles',
       description: 'Direct trade coffee and expert brewing',
       rating: 4.6,
+      image: 'https://images.unsplash.com/photo-1511081692775-05d0f180a065?q=80&w=986&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       id: 3,
@@ -24,6 +26,7 @@ const TopLocations = ({ onSeeAll }) => {
       city: 'Portland',
       description: 'Pioneer of third-wave coffee culture',
       rating: 4.8,
+      image: 'https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
   ];
 
@@ -44,11 +47,16 @@ const TopLocations = ({ onSeeAll }) => {
           {locations.map((location) => (
             <View key={location.id} style={styles.locationCard}>
               <View style={styles.locationImage}>
+                <Image
+                  source={{ uri: location.image }}
+                  style={styles.locationImageImg}
+                  resizeMode="cover"
+                />
                 <View style={styles.locationRating}>
                   <Ionicons name="star" size={12} color="#FFD700" />
                   <Text style={styles.locationRatingText}>{location.rating}</Text>
                 </View>
-                <Ionicons name="storefront-outline" size={40} color="#8B4513" />
+                {/* <Ionicons name="storefront-outline" size={40} color="#8B4513" style={styles.locationIconOverlay} /> */}
               </View>
               <View style={styles.locationInfo}>
                 <Text style={styles.locationName}>{location.name}</Text>
@@ -106,6 +114,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 8,
     position: 'relative',
+    overflow: 'hidden',
+  },
+  locationImageImg: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+    borderRadius: 12,
   },
   locationRating: {
     position: 'absolute',
@@ -123,6 +138,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     marginLeft: 2,
+  },
+  locationIconOverlay: {
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: 12,
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    borderRadius: 20,
+    padding: 4,
   },
   locationInfo: {
     paddingHorizontal: 4,
